@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (!DateTime::createFromFormat('Y-m-d', $date)) $errors[] = 'Дата: неверный формат';
 
     $gender = $_POST['gender'] ?? '';
-    if (!in_array($gender, ['male','female','other'], true)) $errors[] = 'Пол: выберите значение';
+    if (!in_array($gender, ['male','female'], true)) $errors[] = 'Пол: выберите значение';
 
     $langs = $_POST['languages'] ?? [];
     if (!is_array($langs) || empty($langs)) $errors[] = 'Языки: выберите хотя бы один';
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             $stmt = $pdo->prepare("INSERT INTO applications (full_name, phone, email, birth_date, gender, biography, contract_accepted) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$fio, $phone, $email, $date, $gender, $bio ?: null, $contract]);
             
-            $appId = $pdo->lastInsertId(); // требование методички
+            $appId = $pdo->lastInsertId();
 
             $langStmt = $pdo->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
             foreach ($langs as $langId) {

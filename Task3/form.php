@@ -51,7 +51,6 @@
                 <div class="radio-group">
                     <label><input type="radio" name="gender" value="male" <?= ($old['gender'] ?? '') == 'male' ? 'checked' : '' ?> required> Муж</label>
                     <label><input type="radio" name="gender" value="female" <?= ($old['gender'] ?? '') == 'female' ? 'checked' : '' ?>> Жен</label>
-                    <label><input type="radio" name="gender" value="other" <?= ($old['gender'] ?? '') == 'other' ? 'checked' : '' ?>> Другой</label>
                 </div>
             </div>
 
