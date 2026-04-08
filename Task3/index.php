@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $date     = $_POST['birth_date'] ?? '';
     $gender   = $_POST['gender'] ?? '';
     $langs    = $_POST['languages'] ?? [];
-    $bio      = trim($_POST['biography'] ?? ''); \
+    $bio      = trim($_POST['biography'] ?? ''); 
     $contract = isset($_POST['contract']) ? 1 : 0;
 
     if (!preg_match('/^[А-Яа-яA-Za-z\s]{2,150}$/u', $fio)) $errors[] = 'ФИО: только буквы и пробелы (2-150 симв.)';
