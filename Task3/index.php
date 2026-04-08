@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (!is_array($langs) || empty($langs)) $errors[] = 'Языки: выберите хотя бы один';
     else foreach ($langs as $l) if (!ctype_digit((string)$l) || (int)$l < 1 || (int)$l > 12) { $errors[] = 'Языки: недопустимое значение'; break; }
 
-    $bio = trim($_POST['biography'] ?? '');
-    if (mb_strlen($bio) > 1000) $errors[] = 'Биография: макс. 1000 символов';
+    $bio_len = function_exists('iconv_strlen') ? iconv_strlen($bio, 'UTF-8') : strlen($bio);
+    if ($bio_len > 1000) $errors[] = 'Биография: макс. 1000 символов';
 
     $contract = isset($_POST['contract']) ? 1 : 0;
     if ($contract !== 1) $errors[] = 'Контракт: отметьте галочку';
