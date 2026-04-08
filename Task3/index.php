@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (!preg_match('/^[\+0-9\s\-\(\)]{10,20}$/', $phone)) $errors[] = 'Телефон: неверный формат';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Email: неверный формат';
     if (!DateTime::createFromFormat('Y-m-d', $date)) $errors[] = 'Дата: неверный формат';
-    if (!in_array($gender, ['male','female','other'], true)) $errors[] = 'Пол: выберите значение';
+    if (!in_array($gender, ['male','female'], true)) $errors[] = 'Пол: выберите значение';
 
     if (!is_array($langs) || empty($langs)) {
         $errors[] = 'Языки: выберите хотя бы один';
